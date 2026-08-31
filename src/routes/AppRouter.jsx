@@ -1,3 +1,4 @@
+// src/routes/AppRouter.jsx
 import Login from '../pages/Login/Login';
 import Home from '../pages/Home/Home';
 import Decks from '../pages/Decks/Decks';
@@ -9,7 +10,7 @@ import AboutUs from '../pages/AboutUs/AboutUs';
 import AccountType from '../pages/AccountType/AccountType';
 import CommonRegister from '../pages/CommonRegister/CommonRegister';
 import InstitutionalRegister from '../pages/InstitutionalRegister/InstitutionalRegister';
-import { Register } from '../pages/Register/Register';
+import Register from '../pages/Register/Register'; // <-- MUDANÇA AQUI (sem chaves)
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 
