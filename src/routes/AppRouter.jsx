@@ -12,6 +12,7 @@ import CommonRegister from '../pages/CommonRegister/CommonRegister';
 import InstitutionalRegister from '../pages/InstitutionalRegister/InstitutionalRegister';
 import Register from '../pages/Register/Register';
 import GamesScreen from '../pages/GamesScreen/GamesScreen';
+import PresentCards from '../pages/PresentCards/PresentCards';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 
@@ -73,6 +74,14 @@ export const AppRouter = () => {
           element={
             <ProtectedRoute>
               <GamesScreen />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/games/:deckId/apresentar-cartoes"
+          element={
+            <ProtectedRoute>
+              <PresentCards />
             </ProtectedRoute>
           }
         />
