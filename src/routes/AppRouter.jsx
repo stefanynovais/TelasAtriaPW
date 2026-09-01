@@ -10,7 +10,8 @@ import AboutUs from '../pages/AboutUs/AboutUs';
 import AccountType from '../pages/AccountType/AccountType';
 import CommonRegister from '../pages/CommonRegister/CommonRegister';
 import InstitutionalRegister from '../pages/InstitutionalRegister/InstitutionalRegister';
-import Register from '../pages/Register/Register'; // <-- MUDANÇA AQUI (sem chaves)
+import Register from '../pages/Register/Register';
+import GamesScreen from '../pages/GamesScreen/GamesScreen';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ProtectedRoute } from '../components/ProtectedRoute/ProtectedRoute';
 
@@ -64,6 +65,14 @@ export const AppRouter = () => {
           element={
             <ProtectedRoute>
               <Info />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/games/:deckId"
+          element={
+            <ProtectedRoute>
+              <GamesScreen />
             </ProtectedRoute>
           }
         />

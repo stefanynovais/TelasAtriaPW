@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DashboardLayout from "../../components/DashboardLayout/DashboardLayout";
 import logo from '../../assets/logo_atria_branca.png';
 import "./style.css";
@@ -13,6 +14,7 @@ const decksRecentes = [ //apenas para teste do visual
 
 export default function Home() {
   const [busca, setBusca] = useState('');
+  const navigate = useNavigate();
 
   const handleImportClick = () => {
     document.getElementById('import-file-input').click();
@@ -71,7 +73,11 @@ export default function Home() {
           <div className="home-recent-list">
             {decksFiltrados.length > 0 ? (
               decksFiltrados.map((deck) => (
-                <div key={deck.id} className="home-recent-item">
+                <div
+                  key={deck.id}
+                  className="home-recent-item"
+                  onClick={() => navigate(`/games/${deck.id}`)}
+                >
                   {deck.nome}
                 </div>
               ))
