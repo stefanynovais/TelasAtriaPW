@@ -1,11 +1,12 @@
-
 .dashboard {
   display: flex;
   min-height: 100vh;
+  background: linear-gradient(to bottom, #542BD7, #200144);
 }
 
 .content {
   flex: 1;
+  margin-left: 80px;
 
   position: relative;
   overflow: hidden;

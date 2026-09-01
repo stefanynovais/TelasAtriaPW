@@ -1,4 +1,3 @@
-// src/pages/CommonRegister/CommonRegister.jsx
 import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { LayoutComponents } from '../../components/LayoutComponents/LayoutComponents';
