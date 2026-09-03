@@ -6,6 +6,12 @@ import jwt from 'jsonwebtoken'
 import { prisma } from '../config/database.js'
 import { env } from '../config/env.js'
 
+// Código fixo da ETEC de vocês — exigido no cadastro pra confirmar que
+// a pessoa realmente pertence à instituição. Como é uma única escola por
+// enquanto (não um sistema multi-instituição), um valor fixo resolve sem
+// precisar de um model novo no banco.
+const CODIGO_ETEC_VALIDO = '043'
+
 const gerarToken = (user) => {
   return jwt.sign(
     { id: user.id, email: user.email, role: user.role },
@@ -41,6 +47,11 @@ export const authService = {
   },
 
   register: async (userData) => {
+    // valida o código da ETEC antes de qualquer outra coisa
+    if (userData.codigoEtec !== CODIGO_ETEC_VALIDO) {
+      throw new Error('Código da ETEC inválido')
+    }
+
     const existingUser = await prisma.user.findUnique({
       where: { email: userData.email },
     })

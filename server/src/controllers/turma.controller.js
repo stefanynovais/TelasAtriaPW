@@ -40,6 +40,14 @@ export const updateTurma = async (req, res, next) => {
 
 export const entrarNaTurma = async (req, res, next) => {
   try {
+    // NOVO — bloqueia professor de entrar como aluno numa turma
+    if (req.user.role === 'PROFESSOR') {
+      return res.status(403).json({
+        status: 'error',
+        message: 'Professores não podem entrar em turmas como aluno',
+      });
+    }
+
     const { codigo } = req.body;
     const turma = await turmaService.entrarNaTurma(codigo, req.user.id);
     res.status(200).json({ message: 'Você entrou na turma com sucesso', turma });

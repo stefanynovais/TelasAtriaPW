@@ -1,14 +1,14 @@
 import { authService } from '../services/auth.service.js'
 
-// Controller que responde a /api/auth/login e /api/auth/register
-// Ele recebe a requisição, chama o serviço e devolve a resposta ao cliente.
-
 export const login = async (req, res, next) => {
   try {
     const credentials = req.body
     const result = await authService.login(credentials)
     res.status(200).json(result)
   } catch (error) {
+    if (error.message === 'Credenciais inválidas') {
+      return res.status(401).json({ status: 'error', message: error.message })
+    }
     next(error)
   }
 }
@@ -19,6 +19,11 @@ export const register = async (req, res, next) => {
     const result = await authService.register(userData)
     res.status(201).json(result)
   } catch (error) {
+    // erros de VALIDAÇÃO (dado errado que o usuário mandou) viram 400,
+    // em vez de cair no erro genérico 500 do resto do sistema
+    if (error.message === 'Código da ETEC inválido' || error.message === 'Usuário já existe') {
+      return res.status(400).json({ status: 'error', message: error.message })
+    }
     next(error)
   }
 }
